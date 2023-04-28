@@ -8,8 +8,10 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python3", "manage.py", "runserver"]
+RUN python3 django_web_app/manage.py makemigrations
 
-EXPOSE 8080
+RUN python3 django_web_app/manage.py migrate
+
+CMD ["python3", "django_web_app/manage.py", "runserver", "0.0.0.0:8000"]
 
 
